@@ -1,0 +1,20 @@
+{
+  "name": "swordsGame",
+  "authors": [
+    "Yasunari Flores <carlosyasu91@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "phaser": "^2.4.7"
+  }
+}

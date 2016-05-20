@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Swords Game</title>
+</head>
+<body>
+<div id="game"></div>
+<script src="lib/phaser/build/phaser.min.js"></script>
+<script src="constants.js"></script>
+<script src="state/Boot.js"></script>
+<script src="state/Preloader.js"></script>
+<script src="state/MainMenu.js"></script>
+<script src="state/Level1.js"></script>
+<script type="text/javascript">
+
+var WIDTH = 1024;
+var HEIGHT = 600;
+
+  window.onload = function(){
+    var game = new Phaser.Game(SCREEN_WIDTH, SCREEN_HEIGHT, Phaser.AUTO, 'gameContainer');
+    game.state.add('Boot', BasicGame.Boot);
+    game.state.add('Preloader', BasicGame.Preloader);
+    game.state.add('MainMenu', BasicGame.MainMenu);
+    game.state.add('Level1', BasicGame.Level1);
+    game.state.start('Boot');
+  }
+</script>
+</body>
+</html>
