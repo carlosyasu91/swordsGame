@@ -54,8 +54,6 @@ BasicGame.Level1.prototype = {
     }
     if(!checkMovement.call(this)){
       this.player.animations.play('standing', 1, true);
-    } else {
-      animate.call(this);
     }
     if(this.input.keyboard.event){
       this.keyPressed = this.input.keyboard.event.which;
@@ -92,10 +90,6 @@ BasicGame.Level1.prototype = {
           this.movementDirection = 'down';
         }
       }
-    }
-
-    function animate(){
-      // if(this.movementDirection !==       )
     }
   }
 
