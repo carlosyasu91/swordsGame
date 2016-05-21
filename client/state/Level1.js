@@ -5,6 +5,7 @@ BasicGame.Level1 = function (game) {
   this.map = null;
   this.layer = null;
   this.movementDirection = null;
+  this.keyPressed = null;
 };
 
 BasicGame.Level1.prototype = {
@@ -37,28 +38,28 @@ BasicGame.Level1.prototype = {
   },
 
   update: function(){
+
+    checkDirection.call(this);
     if (this.input.keyboard.isDown(Phaser.Keyboard.A)){
       this.player.x -= this.playerSpeed;
-      this.walkUp = this.player.animations.play('walkRight', 6, true);
-      this.player.scale.setTo(-1,1);
     }
     if (this.input.keyboard.isDown(Phaser.Keyboard.D)){
-      this.walkUp = this.player.animations.play('walkRight', 6, true);
-      this.player.scale.setTo(1,1);
       this.player.x += this.playerSpeed;
     } 
     if (this.input.keyboard.isDown(Phaser.Keyboard.W)){
-      this.walkUp = this.player.animations.play('walkUp', 6, true);
       this.player.y -= this.playerSpeed;
     }
     if (this.input.keyboard.isDown(Phaser.Keyboard.S)){
-      this.player.animations.play('walkDown', 6, true);
       this.player.y += this.playerSpeed;
     }
     if(!checkMovement.call(this)){
       this.player.animations.play('standing', 1, true);
+    } else {
+      animate.call(this);
     }
-
+    if(this.input.keyboard.event){
+      this.keyPressed = this.input.keyboard.event.which;
+    }
     function checkMovement(){
       if(this.input.keyboard.isDown(Phaser.Keyboard.A)
         || this.input.keyboard.isDown(Phaser.Keyboard.D)
@@ -68,6 +69,33 @@ BasicGame.Level1.prototype = {
       } else {
         return false;
       }
+    }
+
+    function checkDirection(){
+      if(this.input.keyboard.event && this.input.keyboard.event.which !== this.keyPressed){
+        if (this.input.keyboard.isDown(Phaser.Keyboard.A)){
+          this.walkUp = this.player.animations.play('walkRight', 6, true);
+          this.player.scale.setTo(-1,1);
+          this.movementDirection = 'left';
+        }
+        if (this.input.keyboard.isDown(Phaser.Keyboard.D)){
+          this.walkUp = this.player.animations.play('walkRight', 6, true);
+          this.player.scale.setTo(1,1);
+          this.movementDirection = 'right';
+        }
+        if (this.input.keyboard.isDown(Phaser.Keyboard.W)){
+          this.walkUp = this.player.animations.play('walkUp', 6, true);
+          this.movementDirection = 'up';
+        }
+        if (this.input.keyboard.isDown(Phaser.Keyboard.S)){
+          this.player.animations.play('walkDown', 6, true);
+          this.movementDirection = 'down';
+        }
+      }
+    }
+
+    function animate(){
+      // if(this.movementDirection !==       )
     }
   }
 
